@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import { SetStateAction, useState, useRef, useEffect } from "react";
 import styles from "../styles/Home.module.css";
+import { io } from "socket.io-client";
 
 const Home: NextPage = () => {
   const [message, setMessage] = useState("");
@@ -8,6 +9,13 @@ const Home: NextPage = () => {
   const handleMessage = (e: { target: { value: SetStateAction<string> } }) => {
     setMessage(e.target.value);
   };
+  useEffect(() => {
+    // remember it is like mounting and unmounting!
+    const socket = io("ws://localhost:3000");
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
   const messageBoxRef = useRef<HTMLDivElement>(null);
   const addMessageToList = (msg: string) => {
     setListOfMessage([...listOfMessage, msg]);

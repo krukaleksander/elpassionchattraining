@@ -19,16 +19,27 @@ const Home: NextPage = () => {
       block: "nearest",
     });
   };
-
+  const addMessageToListFromBox = () => {
+    setListOfMessage([...listOfMessage, "INNY EVENT"]);
+  };
   useEffect(() => {
     scrollToBottom();
   }, [listOfMessage]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setListOfMessage([...listOfMessage, "3sek"]);
+    }, 3000);
+  }, []);
 
   return (
     <div className={styles.container}>
       <h1 className={styles.uglyTitle}>Welcome in The Ugly Chat ;)</h1>
       <div className={styles.chatWindow}>
-        <div className={styles.messageDisplay}>
+        <div
+          className={styles.messageDisplay}
+          onClick={() => addMessageToListFromBox()}
+        >
           {listOfMessage.length > 0 &&
             listOfMessage.map((msg, index) => <p key={index}>{msg}</p>)}
           <div ref={messageBoxRef}></div>

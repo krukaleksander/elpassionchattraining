@@ -11,19 +11,29 @@ const Home: NextPage = () => {
     setMessage(e.target.value);
   };
   useEffect(() => {
+    const myTimeout = setTimeout(() => {
+      setListOfMessage((prevState) => [...prevState, "3sek"]);
+    }, 3000);
     // remember it is like mounting and unmounting!
     const socket = io("ws://localhost:3000");
     socket.on("WELCOME MESSAGE", (msg: string) => addMessageToList(msg));
+    socket.on("new-message-from-server", (msg: string) =>
+      addMessageToList(msg)
+    );
     setSocket(socket);
     return () => {
       socket.disconnect();
+      socket.removeAllListeners();
+      clearTimeout(myTimeout);
     };
   }, []);
   const messageBoxRef = useRef<HTMLDivElement>(null);
   const addMessageToList = (msg: string) => {
     setListOfMessage((prevState) => [...prevState, msg]);
   };
-
+  const sendMessageToServer = (msg: string) => {
+    socket?.emit("new-message", msg);
+  };
   const scrollToBottom = () => {
     messageBoxRef.current?.scrollIntoView({
       behavior: "smooth",
@@ -36,12 +46,6 @@ const Home: NextPage = () => {
   useEffect(() => {
     scrollToBottom();
   }, [listOfMessage]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setListOfMessage([...listOfMessage, "3sek"]);
-    }, 3000);
-  }, []);
 
   return (
     <div className={styles.container}>
@@ -62,6 +66,7 @@ const Home: NextPage = () => {
           type="text"
           onKeyPress={(e) => {
             if (e.charCode == 13) {
+              sendMessageToServer(message);
               addMessageToList(message);
               setMessage("");
             }

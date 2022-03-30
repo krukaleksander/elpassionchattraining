@@ -13,6 +13,7 @@ const Home: NextPage = () => {
   useEffect(() => {
     // remember it is like mounting and unmounting!
     const socket = io("ws://localhost:3000");
+    socket.on("WELCOME MESSAGE", (msg: string) => addMessageToList(msg));
     setSocket(socket);
     return () => {
       socket.disconnect();
@@ -20,7 +21,7 @@ const Home: NextPage = () => {
   }, []);
   const messageBoxRef = useRef<HTMLDivElement>(null);
   const addMessageToList = (msg: string) => {
-    setListOfMessage([...listOfMessage, msg]);
+    setListOfMessage((prevState) => [...prevState, msg]);
   };
 
   const scrollToBottom = () => {

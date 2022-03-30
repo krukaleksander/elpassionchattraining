@@ -1,0 +1,31 @@
+.uglyTitle {
+  color: cadetblue;
+  text-align: center;
+  font-size: 2rem;
+  letter-spacing: .3rem;
+}
+
+.chatWindow {
+  max-width: 800px;
+  min-height: 500px;
+  border: 2px solid #ddd;
+  margin: 0 auto;
+  padding: 5px;
+  box-shadow: 1px 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+}
+.messageDisplay {
+  height: 600px;
+  width: 95%;
+  border: 2px solid black; 
+  background: rgba(221, 221, 221, 0.678);
+  overflow-y: scroll;
+}
+
+.inputText {
+  width: 95%;
+}

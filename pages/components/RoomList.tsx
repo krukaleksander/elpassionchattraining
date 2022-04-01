@@ -3,13 +3,13 @@ export function RoomList({ activeElement, handleChangeRoom }) {
     <aside className="rooms-list">
       <ul>
         <li
-          className={activeElement === "first" ? "active-room" : null}
+          className={activeElement === "first" ? "active-room" : ""}
           onClick={() => handleChangeRoom("first")}
         >
           #general
         </li>
         <li
-          className={activeElement === "second" ? "active-room" : null}
+          className={activeElement === "second" ? "active-room" : ""}
           onClick={() => handleChangeRoom("second")}
         >
           #test

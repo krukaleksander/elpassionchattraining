@@ -15,8 +15,9 @@ const Home: NextPage = () => {
   };
 
   const handleChangeRoom = (nameOfRoom: string) => {
-    setActiveRoom(nameOfRoom);
     socket?.emit("join-room", nameOfRoom);
+    setActiveRoom(nameOfRoom);
+    setListOfMessage([]);
   };
   useEffect(() => {
     const myTimeout = setTimeout(() => {

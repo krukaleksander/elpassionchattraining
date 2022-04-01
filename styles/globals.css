@@ -38,3 +38,9 @@ li {
   margin-top: 10px;
   cursor: pointer;
 }
+
+.ugly-image {
+  display: block!important;
+  margin: 0 auto!important;
+  width: 200px;
+}

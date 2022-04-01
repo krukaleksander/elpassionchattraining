@@ -1,6 +1,6 @@
 interface IHandleActiveElement {
   activeElement: string;
-  handleChangeRoom: (name: string) => void;
+  handleChangeRoom: (name: string) => void;  
 }
 
 export function RoomList({
@@ -11,14 +11,14 @@ export function RoomList({
     <aside className="rooms-list">
       <ul>
         <li
-          className={activeElement === "first" ? "active-room" : ""}
-          onClick={() => handleChangeRoom("first")}
+          className={activeElement === "general" ? "active-room" : ""}
+          onClick={() => handleChangeRoom("general")}
         >
           #general
         </li>
         <li
-          className={activeElement === "second" ? "active-room" : ""}
-          onClick={() => handleChangeRoom("second")}
+          className={activeElement === "test" ? "active-room" : ""}
+          onClick={() => handleChangeRoom("test")}
         >
           #test
         </li>

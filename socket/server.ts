@@ -5,7 +5,7 @@ export function setupHandlers(io: Server) {
     console.log("WOOHOO");
     socket.emit("WELCOME MESSAGE", `User ${socket.id} Connected`);
     socket.on("new-message", (msg) =>
-      socket.broadcast.emit("new-message-from-server", msg)
+      socket.broadcast.to("general").emit("new-message-from-server", msg)
     );
   });
 }

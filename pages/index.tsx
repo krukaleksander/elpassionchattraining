@@ -9,13 +9,13 @@ const Home: NextPage = () => {
   const [message, setMessage] = useState("");
   const [socket, setSocket] = useState<Socket>();
   const [listOfMessage, setListOfMessage] = useState<string[]>([]);
-  const [activeElement, setActiveElement] = useState<string>("general");
+  const [activeRoom, setActiveRoom] = useState<string>("general");
   const handleMessage = (e: { target: { value: SetStateAction<string> } }) => {
     setMessage(e.target.value);
   };
 
   const handleChangeRoom = (nameOfRoom: string) => {
-    setActiveElement(nameOfRoom);
+    setActiveRoom(nameOfRoom);
   };
   useEffect(() => {
     const myTimeout = setTimeout(() => {
@@ -57,16 +57,11 @@ const Home: NextPage = () => {
     <div className={styles.container}>
       <h1 className={styles.uglyTitle}>Welcome in The Ugly Chat ;)</h1>
       <div className="ugly-image">
-        <Image
-          src={ugly}
-          alt=""
-          height={200}
-          width={200}          
-        />
+        <Image src={ugly} alt="" height={200} width={200} />
       </div>
       <div className={styles.chatWindow}>
         <RoomList
-          activeElement={activeElement}
+          activeElement={activeRoom}
           handleChangeRoom={handleChangeRoom}
         />
         <div className="container">

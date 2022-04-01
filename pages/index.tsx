@@ -8,10 +8,14 @@ const Home: NextPage = () => {
   const [message, setMessage] = useState("");
   const [socket, setSocket] = useState<Socket>();
   const [listOfMessage, setListOfMessage] = useState<string[]>([]);
-  const [activeElement, setActiveElement] = useState(null);
+  const [activeElement, setActiveElement] = useState("first");
   const handleMessage = (e: { target: { value: SetStateAction<string> } }) => {
     setMessage(e.target.value);
   };
+
+  const handleChangeRoom = (nameOfRoom: string) => {
+    setActiveElement(nameOfRoom);
+  }
   useEffect(() => {
     const myTimeout = setTimeout(() => {
       setListOfMessage((prevState) => [...prevState, "3sek"]);
@@ -54,7 +58,7 @@ const Home: NextPage = () => {
       <div className={styles.chatWindow}>
         <RoomList
           activeElement={activeElement}
-          setActiveElement={setActiveElement}
+          handleChangeRoom={handleChangeRoom}
         />
         <div className="container">
           <div

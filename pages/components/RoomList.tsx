@@ -1,16 +1,16 @@
-export function RoomList({ activeElement, setActiveElement }) {
+export function RoomList({ activeElement, handleChangeRoom }) {
   return (
     <aside className="rooms-list">
       <ul>
         <li
           className={activeElement === "first" ? "active-room" : null}
-          onClick={() => setActiveElement("first")}
+          onClick={() => handleChangeRoom("first")}
         >
           #general
         </li>
         <li
           className={activeElement === "second" ? "active-room" : null}
-          onClick={() => setActiveElement("second")}
+          onClick={() => handleChangeRoom("second")}
         >
           #test
         </li>

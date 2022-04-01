@@ -26,6 +26,7 @@ const Home: NextPage = () => {
     socket.on("new-message-from-server", (msg: string) =>
       addMessageToList(msg)
     );
+    socket.emit("join-room", activeRoom);
     setSocket(socket);
     return () => {
       socket.disconnect();

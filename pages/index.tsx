@@ -60,10 +60,7 @@ const Home: NextPage = () => {
         <Image src={ugly} alt="" height={200} width={200} />
       </div>
       <div className={styles.chatWindow}>
-        <RoomList
-          activeElement={activeRoom}
-          handleChangeRoom={handleChangeRoom}
-        />
+        <RoomList activeRoom={activeRoom} handleChangeRoom={handleChangeRoom} />
         <div className="container">
           <div
             className={styles.messageDisplay}

@@ -7,5 +7,6 @@ export function setupHandlers(io: Server) {
     socket.on("new-message", (msg) =>
       socket.broadcast.to("general").emit("new-message-from-server", msg)
     );
+    socket.on("join-room", (room: string) => socket.join(room));
   });
 }

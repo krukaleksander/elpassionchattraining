@@ -19,6 +19,7 @@ const Home: NextPage = () => {
     setActiveRoom(nameOfRoom);
     setListOfMessage([]);
   };
+
   useEffect(() => {
     const myTimeout = setTimeout(() => {
       setListOfMessage((prevState) => [...prevState, "3sek"]);

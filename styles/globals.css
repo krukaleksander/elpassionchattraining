@@ -14,3 +14,27 @@ a {
 * {
   box-sizing: border-box;
 }
+.container {
+flex-basis: 80%;
+}
+.rooms-list {
+  background-color: aliceblue;
+  height: 620px;  
+  flex-basis: 20%;
+}
+ul {
+  list-style: none;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+}
+
+.active-room {
+  color: green;
+  font-weight: bolder;
+}
+
+li {
+  margin-top: 10px;
+  cursor: pointer;
+}

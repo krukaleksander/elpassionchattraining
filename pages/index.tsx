@@ -2,11 +2,13 @@ import type { NextPage } from "next";
 import { SetStateAction, useState, useRef, useEffect } from "react";
 import styles from "../styles/Home.module.css";
 import { io, Socket } from "socket.io-client";
+import { RoomList } from "./components/RoomList";
 
 const Home: NextPage = () => {
   const [message, setMessage] = useState("");
   const [socket, setSocket] = useState<Socket>();
   const [listOfMessage, setListOfMessage] = useState<string[]>([]);
+  const [activeElement, setActiveElement] = useState(null);
   const handleMessage = (e: { target: { value: SetStateAction<string> } }) => {
     setMessage(e.target.value);
   };
@@ -50,27 +52,33 @@ const Home: NextPage = () => {
     <div className={styles.container}>
       <h1 className={styles.uglyTitle}>Welcome in The Ugly Chat ;)</h1>
       <div className={styles.chatWindow}>
-        <div
-          className={styles.messageDisplay}
-          onClick={() => addMessageToListFromBox()}
-        >
-          {listOfMessage.length > 0 &&
-            listOfMessage.map((msg, index) => <p key={index}>{msg}</p>)}
-          <div ref={messageBoxRef}></div>
-        </div>
-        <input
-          value={message}
-          className={styles.inputText}
-          onChange={(e) => handleMessage(e)}
-          type="text"
-          onKeyPress={(e) => {
-            if (e.charCode == 13) {
-              sendMessageToServer(message);
-              addMessageToList(message);
-              setMessage("");
-            }
-          }}
+        <RoomList
+          activeElement={activeElement}
+          setActiveElement={setActiveElement}
         />
+        <div className="container">
+          <div
+            className={styles.messageDisplay}
+            onClick={() => addMessageToListFromBox()}
+          >
+            {listOfMessage.length > 0 &&
+              listOfMessage.map((msg, index) => <p key={index}>{msg}</p>)}
+            <div ref={messageBoxRef}></div>
+          </div>
+          <input
+            value={message}
+            className={styles.inputText}
+            onChange={(e) => handleMessage(e)}
+            type="text"
+            onKeyPress={(e) => {
+              if (e.charCode == 13) {
+                sendMessageToServer(message);
+                addMessageToList(message);
+                setMessage("");
+              }
+            }}
+          />
+        </div>
       </div>
     </div>
   );

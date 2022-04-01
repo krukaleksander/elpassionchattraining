@@ -16,6 +16,7 @@ const Home: NextPage = () => {
 
   const handleChangeRoom = (nameOfRoom: string) => {
     setActiveRoom(nameOfRoom);
+    socket?.emit("join-room", nameOfRoom);
   };
   useEffect(() => {
     const myTimeout = setTimeout(() => {
@@ -41,7 +42,7 @@ const Home: NextPage = () => {
     setListOfMessage((prevState) => [...prevState, msg]);
   };
   const sendMessageToServer = (msg: string) => {
-    socket?.emit("new-message", msg);
+    socket?.emit("new-message", { msg, activeRoom });
   };
   const scrollToBottom = () => {
     messageBoxRef.current?.scrollIntoView({

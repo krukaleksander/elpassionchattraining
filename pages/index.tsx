@@ -14,7 +14,6 @@ const Home: NextPage = () => {
     const myTimeout = setTimeout(() => {
       setListOfMessage((prevState) => [...prevState, "3sek"]);
     }, 3000);
-    // remember it is like mounting and unmounting!
     const socket = io("ws://localhost:3000");
     socket.on("WELCOME MESSAGE", (msg: string) => addMessageToList(msg));
     socket.on("new-message-from-server", (msg: string) =>

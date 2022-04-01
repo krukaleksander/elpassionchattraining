@@ -15,6 +15,7 @@ const Home: NextPage = () => {
   };
 
   const handleChangeRoom = (nameOfRoom: string) => {
+    socket?.emit("leave-room", activeRoom);
     socket?.emit("join-room", nameOfRoom);
     setActiveRoom(nameOfRoom);
     setListOfMessage([]);

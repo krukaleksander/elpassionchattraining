@@ -22,11 +22,13 @@ const Home: NextPage = () => {
       setListOfMessage((prevState) => [...prevState, "3sek"]);
     }, 3000);
     const socket = io("ws://localhost:3000");
-    socket.on("WELCOME MESSAGE", (msg: string) => addMessageToList(msg));
+    socket.on("WELCOME MESSAGE", (msg: string) => {
+      addMessageToList(msg);
+      socket.emit("join-room", activeRoom);
+    });
     socket.on("new-message-from-server", (msg: string) =>
       addMessageToList(msg)
     );
-    socket.emit("join-room", activeRoom);
     setSocket(socket);
     return () => {
       socket.disconnect();

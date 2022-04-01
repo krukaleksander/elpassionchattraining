@@ -8,14 +8,14 @@ const Home: NextPage = () => {
   const [message, setMessage] = useState("");
   const [socket, setSocket] = useState<Socket>();
   const [listOfMessage, setListOfMessage] = useState<string[]>([]);
-  const [activeElement, setActiveElement] = useState("first");
+  const [activeElement, setActiveElement] = useState<string>("first");
   const handleMessage = (e: { target: { value: SetStateAction<string> } }) => {
     setMessage(e.target.value);
   };
 
   const handleChangeRoom = (nameOfRoom: string) => {
     setActiveElement(nameOfRoom);
-  }
+  };
   useEffect(() => {
     const myTimeout = setTimeout(() => {
       setListOfMessage((prevState) => [...prevState, "3sek"]);

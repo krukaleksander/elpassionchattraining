@@ -1,4 +1,12 @@
-export function RoomList({ activeElement, handleChangeRoom }) {
+interface IHandleActiveElement {
+  activeElement: string;
+  handleChangeRoom: (name: string) => void;
+}
+
+export function RoomList({
+  activeElement,
+  handleChangeRoom,
+}: IHandleActiveElement) {
   return (
     <aside className="rooms-list">
       <ul>
